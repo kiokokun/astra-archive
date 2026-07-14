@@ -1,0 +1,237 @@
+types:
+  MediaWork:
+    required:
+    - title
+    - medium
+    properties:
+      title: string
+      medium: enum(anime, manga, webcomic, visual_novel, game, film, book, tv, comic,
+        podcast)
+      creator: string?
+      year: number?
+      status: enum(completed, ongoing, unfinished, reboot)?
+      summary: string?
+      tags: string[]?
+      my_take: string?
+      session_date: string?
+  Character:
+    required:
+    - name
+    - source
+    properties:
+      name: string
+      source: ref(MediaWork)
+      archetype: string?
+      role: string?
+      key_traits: string[]?
+      arc_description: string?
+      notes: string?
+  Theme:
+    required:
+    - label
+    properties:
+      label: string
+      description: string?
+      domain: string?
+      intensity: enum(core, major, minor)?
+      my_take: string?
+  Archetype:
+    required:
+    - name
+    properties:
+      name: string
+      description: string?
+      examples: ref(Character)[]?
+  Philosophy:
+    required:
+    - name
+    properties:
+      name: string
+      description: string?
+      domain: string?
+      source: string?
+      my_take: string?
+      tags: string[]?
+      related_themes: ref(Theme)[]?
+  Creator:
+    required:
+    - name
+    properties:
+      name: string
+      platform: string?
+      url: string?
+      focus: string?
+      notes: string?
+  Person:
+    required:
+    - name
+    properties:
+      name: string
+      notes: string?
+      tags: string[]?
+  Note:
+    required:
+    - content
+    properties:
+      content: string
+      title: string?
+      tags: string[]?
+      refs: string[]?
+      created: string?
+  Document:
+    required:
+    - title
+    properties:
+      title: string
+      path: string?
+      url: string?
+      summary: string?
+      tags: string[]?
+  SocialAccount:
+    required:
+    - platform
+    - handle
+    properties:
+      platform: string
+      handle: string
+      url: string?
+      notes: string?
+relations:
+  explores:
+    from_types:
+    - MediaWork
+    - Document
+    to_types:
+    - Theme
+    cardinality: many_to_many
+    description: This work/document explores this theme
+  features_character:
+    from_types:
+    - MediaWork
+    to_types:
+    - Character
+    cardinality: many_to_many
+  embodies:
+    from_types:
+    - Character
+    to_types:
+    - Archetype
+    cardinality: many_to_many
+  shares_archetype:
+    from_types:
+    - Character
+    to_types:
+    - Character
+    cardinality: many_to_many
+    description: Characters that fill the same narrative role across different works
+  evolves:
+    from_types:
+    - Theme
+    to_types:
+    - Theme
+    cardinality: many_to_many
+    description: Theme B is a refinement/evolution of Theme A
+  contrasts_with:
+    from_types:
+    - Theme
+    to_types:
+    - Theme
+    cardinality: many_to_many
+  similar_to:
+    from_types:
+    - Theme
+    - MediaWork
+    - Character
+    - Philosophy
+    to_types:
+    - Theme
+    - MediaWork
+    - Character
+    - Philosophy
+    cardinality: many_to_many
+  references:
+    from_types:
+    - Note
+    - Document
+    - MediaWork
+    to_types:
+    - Note
+    - Document
+    - MediaWork
+    cardinality: many_to_many
+  mentions:
+    from_types:
+    - Note
+    - Document
+    to_types:
+    - Person
+    - MediaWork
+    - Theme
+    cardinality: many_to_many
+  articulates:
+    from_types:
+    - Creator
+    - MediaWork
+    - Document
+    to_types:
+    - Philosophy
+    cardinality: many_to_many
+    description: This creator/work articulates this philosophy
+  connects_to:
+    from_types:
+    - Philosophy
+    - Theme
+    to_types:
+    - Philosophy
+    - Theme
+    cardinality: many_to_many
+    description: These ideas relate or overlap (philosophy to philosophy, or philosophy
+      to narrative theme)
+  challenges:
+    from_types:
+    - Philosophy
+    - Theme
+    to_types:
+    - Philosophy
+    - Theme
+    cardinality: many_to_many
+    description: This idea challenges or contradicts that one
+  created_by:
+    from_types:
+    - Philosophy
+    - MediaWork
+    - Document
+    to_types:
+    - Creator
+    cardinality: many_to_one
+    description: Who created or originated this work/idea
+  part_of:
+    from_types:
+    - Note
+    - Document
+    to_types:
+    - Document
+    cardinality: many_to_one
+  has_presence:
+    from_types:
+    - Person
+    to_types:
+    - SocialAccount
+    cardinality: many_to_many
+    description: This person/agent has an account on this platform
+
+# 2026-03-18 (Social Presence / Mastodon)
+# - Added type: SocialAccount (platform, handle, url?, notes?)
+# - Added relation: has_presence (Person -> SocialAccount, many_to_many)
+# - Entities: person_astra -> has_presence -> social_mastodon
+
+entity_type:
+  - name: astra_mind
+    description: "The agent's self‑concept"
+
+relation_type:
+  - name: has_emotion
+    description: "Links an entity to an emotional token"
+
+  - name: influences
+    description: "Causal influence between two entities"

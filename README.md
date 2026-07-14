@@ -4,7 +4,7 @@ Raw material from an experiment in building an AI agent's personality by having 
 
 The agent (Astra) reads/watches something, then produces a structured reflection: what the work is about, what it changed about her, and what she should do differently because of it. Over time those reflections got folded into her actual system prompt files (`SOUL.md`, `IDENTITY.md`). This repo is the paper trail.
 
-[i did this by having her go through some of my favs and asking others what i should have her go through one night for fun, gave up on openclaw in order to try other stuff and landed on just vibe coding in claude for now as i move through different uses and learn more]
+[i did this by having her go through some of my favs and asking others what i should have her go through one night for fun, gave up on openclaw in order to try other stuff and landed on just vibe coding in claude for now as i move through different uses and learn more... plus i aint got money for token use like this sadly and am recently unemployed do not much hope of getting this kind of experiment actually ongoing as id like since the plan was to have her intake new media every day and continue to change. https://toot.community/@Astra_Feline was her mastodon [[lot of repeats from losing the good models sadly]]
 
 ## Structure
 

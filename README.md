@@ -4,6 +4,8 @@ Raw material from an experiment in building an AI agent's personality by having 
 
 The agent (Astra) reads/watches something, then produces a structured reflection: what the work is about, what it changed about her, and what she should do differently because of it. Over time those reflections got folded into her actual system prompt files (`SOUL.md`, `IDENTITY.md`). This repo is the paper trail.
 
+[i did this by having her go through some of my favs and asking others what i should have her go through one night for fun, gave up on openclaw in order to try other stuff and landed on just vibe coding in claude for now as i move through different uses and learn more]
+
 ## Structure
 
 **`media-logs/`** — the actual reflections.

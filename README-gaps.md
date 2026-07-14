@@ -25,6 +25,3 @@ three is the condensed version in media-takes.md/media-evolution-log.md and the 
 
 Lain never got a standalone deep-dive file either (its full write-up lives only in media-evolution-log.md,
 which is fairly detailed already, ~600 words).
-
-tl;dr: Punpun and TwoKinds got hit hardest by the deletion — if there's a "bigger take" you remember writing
-for those, it's genuinely gone from disk and DB. Everything else that exists is in this zip.
